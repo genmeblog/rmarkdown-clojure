@@ -108,6 +108,18 @@ When it's done you can generate documents (html, pdf, whatever) within `ESS` or 
 render("README.Rmd","all")
 ```
 
+Emacs view
+----------
+
+![Emacs in action](emacs.png)
+
+Rendered documents
+------------------
+
+-   [HTML](https://genmeblog.github.io/rmarkdown-clojure/README.html)
+-   [PDF](https://github.com/genmeblog/rmarkdown-clojure/blob/master/README.pdf)
+-   [WORD](https://github.com/genmeblog/rmarkdown-clojure/blob/master/README.docx)
+
 What's odd
 ----------
 
@@ -121,8 +133,3 @@ RMarkdown reference
 -------------------
 
 <https://bookdown.org/yihui/rmarkdown/>
-
-Emacs view
-----------
-
-![Emacs in action](emacs.png)

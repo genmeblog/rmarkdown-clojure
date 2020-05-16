@@ -7,6 +7,8 @@ output:
         highlight: tango
     md_document:
         variant: markdown_github
+    word_document:
+        highlight: tango
 ---
 
 ```{r setup, include=FALSE}
@@ -124,6 +126,16 @@ When it's done you can generate documents (html, pdf, whatever) within `ESS` or 
 render("README.Rmd","all")
 ```
 
+## Emacs view
+
+![Emacs in action](emacs.png)
+
+## Rendered documents
+
+* [HTML](https://genmeblog.github.io/rmarkdown-clojure/README.html)
+* [PDF](https://github.com/genmeblog/rmarkdown-clojure/blob/master/README.pdf)
+* [WORD](https://github.com/genmeblog/rmarkdown-clojure/blob/master/README.docx)
+
 ## What's odd
 
 There are couple of problems:
@@ -136,6 +148,3 @@ There are couple of problems:
 
 https://bookdown.org/yihui/rmarkdown/
 
-## Emacs view
-
-![Emacs in action](emacs.png)
