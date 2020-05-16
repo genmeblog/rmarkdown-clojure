@@ -12,13 +12,23 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-nrepl_port <- "64780"
+find_nrepl_port_up <- function() {
+    wd <- getwd()
+    while(wd != dirname(wd)) {
+        f <- paste0(wd,"/.nrepl-port")
+        if(file.exists(f)) return(paste0("@",f))
+        wd <- dirname(wd)
+        f <- NULL
+    }
+}
+port_file <- find_nrepl_port_up()
+if(is.null(port_file)) stop("nREPL port not found")
 library(knitr)
 knitr_one_string <- knitr:::one_string
 nrepl_cmd  <- "rep"
 opts_chunk$set(comment=NA, highlight=TRUE)
 knit_engines$set(clojure = function(options) {
-    code <- paste("-p", nrepl_port, shQuote(knitr_one_string(options$code)))
+    code <- paste("-p", port_file, shQuote(knitr_one_string(options$code)))
     out <- if (options$eval) {
                if (options$message) message('running: ', nrepl_cmd, ' ', code)
                tryCatch(
@@ -99,7 +109,17 @@ Run `nRepl`, create `.Rmd` file and add below chunk at the beginning of it. As y
 
 ````markdown
 `r ''````{r setup, include=FALSE}
-nrepl_port <- "53247"
+find_nrepl_port_up <- function() {
+    wd <- getwd()
+    while(wd != dirname(wd)) {
+        f <- paste0(wd,"/.nrepl-port")
+        if(file.exists(f)) return(paste0("@",f))
+        wd <- dirname(wd)
+        f <- NULL
+    }
+}
+port_file <- find_nrepl_port_up()
+if(is.null(port_file)) stop("nREPL port not found")
 library(knitr)
 knitr_one_string <- knitr:::one_string
 nrepl_cmd  <- "rep"
@@ -143,10 +163,12 @@ render("README.Rmd","all")
 There are couple of problems:
 
 * manual renderer setup
-* manual port setup
 * no pretty printing results by default
 
 ## RMarkdown reference
 
 https://bookdown.org/yihui/rmarkdown/
 
+```{r}
+
+```

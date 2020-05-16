@@ -82,7 +82,17 @@ Run `nRepl`, create `.Rmd` file and add below chunk at the beginning of it. As y
 
 ```` markdown
 ```{r setup, include=FALSE}
-nrepl_port <- "53247"
+find_nrepl_port_up <- function() {
+    wd <- getwd()
+    while(wd != dirname(wd)) {
+        f <- paste0(wd,"/.nrepl-port")
+        if(file.exists(f)) return(paste0("@",f))
+        wd <- dirname(wd)
+        f <- NULL
+    }
+}
+port_file <- find_nrepl_port_up()
+if(is.null(port_file)) stop("nREPL port not found")
 library(knitr)
 knitr_one_string <- knitr:::one_string
 nrepl_cmd  <- "rep"
@@ -129,7 +139,6 @@ What's odd
 There are couple of problems:
 
 -   manual renderer setup
--   manual port setup
 -   no pretty printing results by default
 
 RMarkdown reference

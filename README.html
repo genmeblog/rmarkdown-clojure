@@ -291,7 +291,17 @@ data</code></pre></div>
 </ul>
 <p>Run <code>nRepl</code>, create <code>.Rmd</code> file and add below chunk at the beginning of it. As you can see, there is a place to define <code>nrepl_port</code>. Find your port and change this value. I haven’t been able to find an easy way to setup it automatically (yet).</p>
 <div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">```{r setup, include=FALSE}
-nrepl_port &lt;- &quot;53247&quot;
+find_nrepl_port_up &lt;- function() {
+<span class="bn">    wd &lt;- getwd()</span>
+<span class="bn">    while(wd != dirname(wd)) {</span>
+<span class="bn">        f &lt;- paste0(wd,&quot;/.nrepl-port&quot;)</span>
+<span class="bn">        if(file.exists(f)) return(paste0(&quot;@&quot;,f))</span>
+<span class="bn">        wd &lt;- dirname(wd)</span>
+<span class="bn">        f &lt;- NULL</span>
+<span class="bn">    }</span>
+}
+port_file &lt;- find_nrepl_port_up()
+if(is.null(port_file)) stop(&quot;nREPL port not found&quot;)
 library(knitr)
 knitr_one_string &lt;- knitr:::one_string
 nrepl_cmd  &lt;- &quot;rep&quot;
@@ -335,7 +345,6 @@ knit_engines$set(clojure = function(options) {
 <p>There are couple of problems:</p>
 <ul>
 <li>manual renderer setup</li>
-<li>manual port setup</li>
 <li>no pretty printing results by default</li>
 </ul>
 </div>
