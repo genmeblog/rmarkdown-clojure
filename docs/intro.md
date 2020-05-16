@@ -56,10 +56,10 @@ Generate image
 (def img (-> :cubehelix
              (c/gradient)
              (u/gradient->image true)
-             (save "doc/gradient.png")))
+             (save "docs/gradient.png")))
 ```
 
-    saving: doc/gradient.png...
+    saving: docs/gradient.png...
     ...done!
     #'user/img
 
@@ -107,7 +107,7 @@ knit_engines$set(clojure = function(options) {
 When it's done you can generate documents (html, pdf, whatever) within `ESS` or from external R session.
 
 ``` r
-render("doc/intro.Rmd","all")
+render("docs/intro.Rmd","all")
 ```
 
 What's odd

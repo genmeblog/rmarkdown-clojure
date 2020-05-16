@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-nrepl_port <- "51970"
+nrepl_port <- "64780"
 library(knitr)
 knitr_one_string <- knitr:::one_string
 nrepl_cmd  <- "rep"
@@ -77,7 +77,7 @@ And another one.
 (def img (-> :cubehelix
              (c/gradient)
              (u/gradient->image true)
-             (save "doc/gradient.png")))
+             (save "docs/gradient.png")))
 ```
 ![Generated gradient with luma](gradient.png)
 
@@ -122,7 +122,7 @@ knit_engines$set(clojure = function(options) {
 When it's done you can generate documents (html, pdf, whatever) within `ESS` or from external R session.
 
 ```{r eval=FALSE}
-render("doc/intro.Rmd","all")
+render("docs/intro.Rmd","all")
 ```
 
 ## What's odd
