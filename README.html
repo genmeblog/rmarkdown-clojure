@@ -280,7 +280,7 @@ summary {
 </ul></li>
 <li>R
 <ul>
-<li>Install R with <code>knitr</code> package (and all needed deps, like <code>pandoc</code>)</li>
+<li>Install R with <code>knitr</code> and <code>rmarkdown</code> packages (and all needed deps, like <code>pandoc</code>)</li>
 </ul></li>
 <li>Emacs
 <ul>
@@ -310,7 +310,8 @@ knit_engines$set(clojure = function(options) {
 <span class="bn">    engine_output(options, options$code, out)})</span>
 ```</code></pre></div>
 <p>When it’s done you can generate documents (html, pdf, whatever) within <code>ESS</code> or from external R session.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;README.Rmd&quot;</span>,<span class="st">&quot;all&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rmarkdown)
+<span class="kw">render</span>(<span class="st">&quot;README.Rmd&quot;</span>,<span class="st">&quot;all&quot;</span>)</code></pre></div>
 </div>
 <div id="emacs-view" class="section level2">
 <h2>Emacs view</h2>

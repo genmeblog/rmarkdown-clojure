@@ -72,7 +72,7 @@ I'm using Emacs with CIDER here.
     -   Download and install [`rep`](https://github.com/eraserhd/rep)
     -   Be able to run `nRepl`
 -   R
-    -   Install R with `knitr` package (and all needed deps, like `pandoc`)
+    -   Install R with `knitr` and `rmarkdown` packages (and all needed deps, like `pandoc`)
 -   Emacs
     -   Install `ESS`, `poly-R` package which enables REPL inside Markdown file.
 
@@ -105,6 +105,7 @@ knit_engines$set(clojure = function(options) {
 When it's done you can generate documents (html, pdf, whatever) within `ESS` or from external R session.
 
 ``` r
+library(rmarkdown)
 render("README.Rmd","all")
 ```
 
