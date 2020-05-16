@@ -65,13 +65,40 @@ Generate image
 
 ![Generated gradient with luma](gradient.png)
 
+Generate markdown
+-----------------
+
+``` clojure
+(println "
+test/data/stocks.csv [5 3]:
+
+| symbol |       date | price |
+|--------+------------+-------|
+|   MSFT | 2000-01-01 | 39.81 |
+|   MSFT | 2000-02-01 | 36.35 |
+|   MSFT | 2000-03-01 | 43.22 |
+|   MSFT | 2000-04-01 | 28.37 |
+|   MSFT | 2000-05-01 | 25.45 |
+")
+```
+
+test/data/stocks.csv \[5 3\]:
+
+| symbol | date       | price |
+|--------|------------|-------|
+| MSFT   | 2000-01-01 | 39.81 |
+| MSFT   | 2000-02-01 | 36.35 |
+| MSFT   | 2000-03-01 | 43.22 |
+| MSFT   | 2000-04-01 | 28.37 |
+| MSFT   | 2000-05-01 | 25.45 |
+
 How to setup
 ------------
 
 I'm using Emacs with CIDER here.
 
 -   Clojure
-    -   Download and install [`rep`](https://github.com/eraserhd/rep)
+-   Download and install [`rep`](https://github.com/eraserhd/rep)
     -   Be able to run `nRepl`
 -   R
     -   Install R with `knitr` and `rmarkdown` packages (and all needed deps, like `pandoc`)
@@ -98,7 +125,12 @@ knitr_one_string <- knitr:::one_string
 nrepl_cmd  <- "rep"
 opts_chunk$set(comment=NA, highlight=TRUE)
 knit_engines$set(clojure = function(options) {
-    code <- paste("-p", nrepl_port, shQuote(knitr_one_string(options$code)))
+    rep_params <- if(options$results=="asis") {
+                      "--print 'out,1,%{out}' --print 'value,1,' -p"
+                  } else {
+                      "-p"
+                  }
+    code <- paste(rep_params, port_file, shQuote(knitr_one_string(options$code)))
     out <- if (options$eval) {
                if (options$message) message('running: ', nrepl_cmd, ' ', code)
                tryCatch(
