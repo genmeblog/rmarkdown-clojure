@@ -230,21 +230,23 @@ summary {
 
 <div id="generating-documents-with-knitr-and-clojure" class="section level1">
 <h1>Generating documents with <code>knitr</code> and Clojure</h1>
-<p>This html document is rendered by R <code>knitr</code> package with embedded Clojure code. Yes, it’s possible. The renderer is configured to use <code>nRepl</code> client: <a href="https://github.com/eraserhd/rep"><code>rep</code></a>.</p>
+<p>This document is rendered by R <code>knitr</code> package with embedded Clojure code. Yes, it’s possible. The renderer is configured to use <code>nRepl</code> client: <a href="https://github.com/eraserhd/rep"><code>rep</code></a>.</p>
 <div id="what-is-knitr-in-short" class="section level2">
 <h2>What is knitr in short</h2>
 <p>Knitr is R package which generates really variety documents out of markdown file with embedded code.</p>
 </div>
-<div id="first-run" class="section level2">
-<h2>First run</h2>
+<div id="lets-run-something" class="section level2">
+<h2>Let’s run something</h2>
 <p>First let’s define <code>data</code>.</p>
 <div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">(<span class="bu">def</span><span class="fu"> data </span>{<span class="at">:a</span> [<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>]
-           <span class="at">:b</span> [<span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>]})</code></pre></div>
-<pre><code>#'user/data</code></pre>
+           <span class="at">:b</span> [<span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>]})
+data</code></pre></div>
+<pre><code>#'user/data
+{:a [1 2 3], :b [3 4 5]}</code></pre>
 <p>Code was executed, <code>data</code> is defined and we can run another chunk.</p>
 <div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">(<span class="kw">keys</span> data)</code></pre></div>
 <pre><code>(:a :b)</code></pre>
-<p>And another one.</p>
+<p>And another one (everything is kept in <code>user</code> namespace).</p>
 <div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">(<span class="kw">-&gt;&gt;</span> data
      <span class="kw">vals</span>
      (<span class="kw">apply</span> <span class="kw">concat</span>)

@@ -1,24 +1,26 @@
 Generating documents with `knitr` and Clojure
 =============================================
 
-This html document is rendered by R `knitr` package with embedded Clojure code. Yes, it's possible. The renderer is configured to use `nRepl` client: [`rep`](https://github.com/eraserhd/rep).
+This document is rendered by R `knitr` package with embedded Clojure code. Yes, it's possible. The renderer is configured to use `nRepl` client: [`rep`](https://github.com/eraserhd/rep).
 
 What is knitr in short
 ----------------------
 
 Knitr is R package which generates really variety documents out of markdown file with embedded code.
 
-First run
----------
+Let's run something
+-------------------
 
 First let's define `data`.
 
 ``` clojure
 (def data {:a [1 2 3]
            :b [3 4 5]})
+data
 ```
 
     #'user/data
+    {:a [1 2 3], :b [3 4 5]}
 
 Code was executed, `data` is defined and we can run another chunk.
 
@@ -28,7 +30,7 @@ Code was executed, `data` is defined and we can run another chunk.
 
     (:a :b)
 
-And another one.
+And another one (everything is kept in `user` namespace).
 
 ``` clojure
 (->> data
