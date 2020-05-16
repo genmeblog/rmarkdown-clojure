@@ -228,13 +228,12 @@ summary {
 </div>
 
 
-<div id="using-clojure-snippets-in-knitr" class="section level1">
-<h1>Using Clojure snippets in knitr</h1>
-<p>This html document is rendered by R <code>knitr</code> package with embedded Clojure code. Yes, it’s possible. It’s even possible by default but the default version is not usable. The default version is using <code>lein exec</code> and is very, very slow. And doesn’t keep session.</p>
-<p>This version is configured to use <code>nRepl</code> client, <a href="https://github.com/eraserhd/rep"><code>rep</code></a> which works pretty well. Add to this Emacs and you get REPL in the Markdown file.</p>
+<div id="generating-documents-with-knitr-and-clojure" class="section level1">
+<h1>Generating documents with <code>knitr</code> and Clojure</h1>
+<p>This html document is rendered by R <code>knitr</code> package with embedded Clojure code. Yes, it’s possible. The renderer is configured to use <code>nRepl</code> client: <a href="https://github.com/eraserhd/rep"><code>rep</code></a>.</p>
 <div id="what-is-knitr-in-short" class="section level2">
 <h2>What is knitr in short</h2>
-<p>Knitr is R package which generates really nice documents out of markdown file with embed code.</p>
+<p>Knitr is R package which generates really variety documents out of markdown file with embedded code.</p>
 </div>
 <div id="first-run" class="section level2">
 <h2>First run</h2>
@@ -261,8 +260,8 @@ summary {
 <div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">(<span class="bu">def</span><span class="fu"> img </span>(<span class="kw">-&gt;</span> <span class="at">:cubehelix</span>
              (c/gradient)
              (u/gradient-&gt;image <span class="va">true</span>)
-             (save <span class="st">&quot;docs/gradient.png&quot;</span>)))</code></pre></div>
-<pre><code>saving: docs/gradient.png...
+             (save <span class="st">&quot;gradient.png&quot;</span>)))</code></pre></div>
+<pre><code>saving: gradient.png...
 ...done!
 #'user/img</code></pre>
 <div class="figure">
@@ -274,9 +273,9 @@ summary {
 <h2>How to setup</h2>
 <p>I’m using Emacs with CIDER here.</p>
 <ul>
-<li>Clojure</li>
-<li>Download and install <a href="https://github.com/eraserhd/rep"><code>rep</code></a>
+<li>Clojure
 <ul>
+<li>Download and install <a href="https://github.com/eraserhd/rep"><code>rep</code></a></li>
 <li>Be able to run <code>nRepl</code></li>
 </ul></li>
 <li>R
@@ -311,7 +310,7 @@ knit_engines$set(clojure = function(options) {
 <span class="bn">    engine_output(options, options$code, out)})</span>
 ```</code></pre></div>
 <p>When it’s done you can generate documents (html, pdf, whatever) within <code>ESS</code> or from external R session.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;docs/intro.Rmd&quot;</span>,<span class="st">&quot;all&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;README.Rmd&quot;</span>,<span class="st">&quot;all&quot;</span>)</code></pre></div>
 </div>
 <div id="whats-odd" class="section level2">
 <h2>What’s odd</h2>

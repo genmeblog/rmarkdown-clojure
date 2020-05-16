@@ -31,15 +31,14 @@ knit_engines$set(clojure = function(options) {
     engine_output(options, options$code, out)})
 ```
 
-# Using Clojure snippets in knitr 
+# Generating documents with `knitr` and Clojure
 
-This html document is rendered by R `knitr` package with embedded Clojure code. Yes, it's possible. It's even possible by default but the default version is not usable. The default version is using `lein exec` and is very, very slow. And doesn't keep session.
-
-This version is configured to use `nRepl` client, [`rep`](https://github.com/eraserhd/rep) which works pretty well. Add to this Emacs and you get REPL in the Markdown file.
+This html document is rendered by R `knitr` package with embedded Clojure code. Yes, it's possible. 
+The renderer is configured to use `nRepl` client: [`rep`](https://github.com/eraserhd/rep).
 
 ## What is knitr in short
 
-Knitr is R package which generates really nice documents out of markdown file with embed code. 
+Knitr is R package which generates really variety documents out of markdown file with embedded code. 
 
 ## First run
 
@@ -77,7 +76,7 @@ And another one.
 (def img (-> :cubehelix
              (c/gradient)
              (u/gradient->image true)
-             (save "docs/gradient.png")))
+             (save "gradient.png")))
 ```
 ![Generated gradient with luma](gradient.png)
 
@@ -86,7 +85,7 @@ And another one.
 I'm using Emacs with CIDER here. 
 
 * Clojure
-* Download and install [`rep`](https://github.com/eraserhd/rep)
+    * Download and install [`rep`](https://github.com/eraserhd/rep)
     * Be able to run `nRepl`
 * R
     * Install R with `knitr` package (and all needed deps, like `pandoc`)
@@ -122,7 +121,7 @@ knit_engines$set(clojure = function(options) {
 When it's done you can generate documents (html, pdf, whatever) within `ESS` or from external R session.
 
 ```{r eval=FALSE}
-render("docs/intro.Rmd","all")
+render("README.Rmd","all")
 ```
 
 ## What's odd
