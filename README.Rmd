@@ -32,7 +32,7 @@ knitr_one_string <- knitr:::one_string
 nrepl_cmd  <- "rep"
 opts_chunk$set(comment=NA, highlight=TRUE)
 knit_engines$set(clojure = function(options) {
-    rep_params <- if(options$results=="asis") {
+    rep_params <- if((options$results == "asis") || isTRUE(options$stdout_only)) {
                       "--print 'out,1,%{out}' --print 'value,1,' -p"
                   } else {
                       "-p"
@@ -86,19 +86,25 @@ And another one (everything is kept in `user` namespace).
      (reduce +))
 ```
 
+## Pretty print
+
+```{clojure stdout_only=TRUE}
+(clojure.pprint/pprint (repeatedly 6 #(repeatedly 3 rand)))
+```
+
 ## Generate image
 
-```{clojure}
+```{clojure results="hide"}
 (require '[clojure2d.core :refer [save]]
          '[clojure2d.color :as c]
          '[clojure2d.extra.utils :as u])
 ```
 
-```{clojure}
-(def img (-> :cubehelix
-             (c/gradient)
-             (u/gradient->image true)
-             (save "gradient.png")))
+```{clojure results="hide"}
+(-> :cubehelix
+    (c/gradient)
+    (u/gradient->image true)
+    (save "gradient.png"))
 ```
 ![Generated gradient with luma](gradient.png)
 
@@ -150,7 +156,7 @@ knitr_one_string <- knitr:::one_string
 nrepl_cmd  <- "rep"
 opts_chunk$set(comment=NA, highlight=TRUE)
 knit_engines$set(clojure = function(options) {
-    rep_params <- if(options$results=="asis") {
+    rep_params <- if((options$results == "asis") || isTRUE(options$stdout_only)) {
                       "--print 'out,1,%{out}' --print 'value,1,' -p"
                   } else {
                       "-p"
