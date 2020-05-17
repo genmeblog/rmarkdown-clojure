@@ -177,3 +177,15 @@ RMarkdown reference
 -------------------
 
 <https://bookdown.org/yihui/rmarkdown/>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables2() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-striped table-hover table-condensed table-responsive');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables2();
+});
+
+</script>
