@@ -195,9 +195,10 @@ There are couple of problems:
 * manual renderer setup
 * no pretty printing results by default
 
-## RMarkdown reference
+## RMarkdown references
 
-https://bookdown.org/yihui/rmarkdown/
+* https://bookdown.org/yihui/rmarkdown/
+* https://bookdown.org/yihui/rmarkdown-cookbook/
 
 <script>
 // add bootstrap table styles to pandoc tables
