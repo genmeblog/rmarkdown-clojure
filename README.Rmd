@@ -129,7 +129,7 @@ test/data/stocks.csv [5 3]:
 I'm using Emacs with CIDER here. 
 
 * Clojure
-* Download and install [`rep`](https://github.com/eraserhd/rep)
+    * Download and install [`rep`](https://github.com/eraserhd/rep)
     * Be able to run `nRepl`
 * R
     * Install R with `knitr` and `rmarkdown` packages (and all needed deps, like `pandoc`)
